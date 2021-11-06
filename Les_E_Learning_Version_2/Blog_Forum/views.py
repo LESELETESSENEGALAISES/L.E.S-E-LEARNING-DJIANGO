@@ -10,7 +10,7 @@ def posts(request):
     query = request.GET.get('q')
     cat_checked = request.GET.get('cat')
     word_checked = request.GET.get('tag')
-    posts_list = Post.objects.all()
+    posts_list = Post.objects.all().order_by('-id')
     r_posts = Post.objects.all().order_by('-id')[:3]
     poemes = Poeme.objects.all().order_by('-id')[:4]
     if word_checked:

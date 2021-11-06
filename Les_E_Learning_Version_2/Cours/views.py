@@ -91,7 +91,7 @@ def Cours_module(request, niveau):
 def Cours_liste(request, niveau, categorie):
     niveau = Niveau.objects.get(niveau=niveau)
     niveau_id = niveau.id
-    cours = Cours.objects.filter(Q(niveau = niveau_id), Q(categorie = categorie))
+    cours = Cours.objects.filter(Q(niveau = niveau_id), Q(categorie = categorie)).order_by("-id")
     som = cours.count()
     
     cours_populaires = Cours.objects.filter(Q(niveau = niveau_id), Q(categorie = categorie)).order_by("-likes").exclude(likes=0).distinct()[:10]
